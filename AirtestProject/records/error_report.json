@@ -172,5 +172,84 @@
         "expected_text": "著作權人：刺客遊戲（廣州）有限公司出版服務單位：天津新創元科技有限公司"
       }
     ]
+  },
+  {
+    "time": "2026-04-21 18:00:53",
+    "screenshot": "F:/Test/AirtestProject/records\\screen_error_20260421_180051.png",
+    "error_count": 18,
+    "errors": [
+      {
+        "current_text": "#UnityEngine#[26/04/2105:56:50.589][http]返回失败url：https://maoge-test-webserver.qikelizhi.com/api/notic",
+        "expected_text": "#UnityEngine#[26/04/2105:56:50.589][http]返回失敗url：https://maoge-test-webserver.qikelizhi.com/api/notic"
+      },
+      {
+        "current_text": "#UnityEngine#[26/04/2105:56:50.6011公告加载失败.data:(code\":1.httpSuccessDatd：null\"responseDatd：null,\"h",
+        "expected_text": "#UnityEngine#[26/04/2105:56:50.6011公告加載失敗.data:(code\":1.httpSuccessDatd：null\"responseDatd：null,\"h"
+      },
+      {
+        "current_text": "#UnityEngine#[26/04/2105:56:52.4051Thttp]返回失败url:https://maoge-test-webserver.qikelizhi.com/api/login",
+        "expected_text": "#UnityEngine#[26/04/2105:56:52.4051Thttp]返回失敗url:https://maoge-test-webserver.qikelizhi.com/api/login"
+      },
+      {
+        "current_text": "#UnityEngine#[26/04/2105:57:14.117]Thttp]返回失败",
+        "expected_text": "#UnityEngine#[26/04/2105:57:14.117]Thttp]返回失敗"
+      },
+      {
+        "current_text": "显隐",
+        "expected_text": "顯隱"
+      },
+      {
+        "current_text": "引导",
+        "expected_text": "引導"
+      },
+      {
+        "current_text": "登录",
+        "expected_text": "登錄"
+      },
+      {
+        "current_text": "切换",
+        "expected_text": "切換"
+      },
+      {
+        "current_text": "开启/关闭",
+        "expected_text": "開啓/關閉"
+      },
+      {
+        "current_text": "性能检测",
+        "expected_text": "性能檢測"
+      },
+      {
+        "current_text": "登录",
+        "expected_text": "登錄"
+      },
+      {
+        "current_text": "健康游戏忠告",
+        "expected_text": "健康遊戲忠告"
+      },
+      {
+        "current_text": "抵制不良游戏，拒绝盗版游戏。",
+        "expected_text": "抵制不良遊戲，拒絕盜版遊戲。"
+      },
+      {
+        "current_text": "注意自我保护，",
+        "expected_text": "注意自我保護，"
+      },
+      {
+        "current_text": "谨防受骗上当。",
+        "expected_text": "謹防受騙上當。"
+      },
+      {
+        "current_text": "适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。",
+        "expected_text": "適度遊戲益腦，沉迷遊戲傷身。合理安排時間，享受健康生活。"
+      },
+      {
+        "current_text": "著作权人：刺客游戏（广州）有限公司出版服务单位：天津新创元科技有限公司",
+        "expected_text": "著作權人：刺客遊戲（廣州）有限公司出版服務單位：天津新創元科技有限公司"
+      },
+      {
+        "current_text": "批准文号：国新出审（2025）153I号出版物号：ISBN978-7-498-15451-4",
+        "expected_text": "批准文號：國新出審（2025）153I號出版物號：ISBN978-7-498-15451-4"
+      }
+    ]
   }
 ]

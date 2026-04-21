@@ -1,12 +1,12 @@
 from airtest.core.api import *
 from startUp.app_launcher import AppLauncher
 from checkTraditionWay.check_tradition import CheckTradition
-from config import ENABLE_APP_LAUNCH
+from config import ENABLE_APP_LAUNCH,DEVICE_SN
 
 if __name__ == "__main__":
     # 连接设备
     auto_setup(__file__)
-    device_sn = "bbafe05b0604"
+    device_sn = DEVICE_SN
     connect_device(f"Android://127.0.0.1:5037/{device_sn}")
     print("✅ 设备已连接")
 
