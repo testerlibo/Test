@@ -1,4 +1,5 @@
 import requests
+import json
 from config import AI_CONFIG
 
 class AITestAgent:
@@ -13,67 +14,51 @@ class AITestAgent:
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json"
             }
-
             payload = {
                 "model": self.model,
                 "messages": [
-                    {"role": "system", "content": "你是专业游戏接口测试专家，回答精简、准确、不啰嗦。"},
+                    {"role": "system", "content": "你是专业接口测试专家，严格按规则判断"},
                     {"role": "user", "content": prompt}
                 ],
-                "temperature": AI_CONFIG.get("temperature", 0.1)
+                "temperature": 0.1
             }
-
-            resp = requests.post(
-                f"{self.base_url}/chat/completions",
-                headers=headers,
-                json=payload,
-                timeout=15
-            )
-
+            resp = requests.post(f"{self.base_url}/chat/completions", json=payload, headers=headers, timeout=10)
             if resp.status_code != 200:
-                return f"AI 服务异常 {resp.status_code}：{resp.text}"
+                return "AI服务异常"
+            return resp.json()["choices"][0]["message"]["content"].strip()
+        except:
+            return "AI调用失败"
 
-            res_json = resp.json()
-
-            if "choices" not in res_json or len(res_json["choices"]) == 0:
-                return "AI 回复格式错误"
-
-            return res_json["choices"][0]["message"]["content"]
-
-        except Exception as e:
-            return f"AI 调用失败：{str(e)}"
-
-    def gen_test_cases(self, api_name, api_path, params):
+    def gen_test_cases_with_params(self, api_name, default_body):
         prompt = f"""
-你是游戏接口测试专家。
 接口：{api_name}
-地址：{api_path}
-入参：{params}
+正确参数：{default_body}
 
-生成5条标准测试用例：
-1.正常用例
-2.参数缺失
-3.参数非法
-4.参数越界
-5.重复请求
+生成5条可执行测试用例，严格按格式返回，不要多余内容
+每行格式：
+用例名称|参数字典
 
-只输出用例条目，不要多余描述。
+1 正常用例|{json.dumps(default_body, ensure_ascii=False)}
+2 空参|{{}}
+3 缺少必选参数|{{}}
+4 非法参数|{{}}
+5 异常场景|{{}}
 """
         return self.chat(prompt)
-
-    def assert_result(self, req, resp):
+    def analyze(self, resp, case_name=""):
         prompt = f"""
-分析游戏接口结果：
-请求：{req}
-响应：{resp}
+接口返回：{resp}
+用例名称：{case_name}
 
-判断：
+请严格按照以下规则判断，精简输出4行：
 1. 是否成功
-2. code 是否正常
-3. 是否存在BUG
+2. code是否正常
+3. 是否符合预期
 4. 结论
 
-输出精简。
+规则：
+1. 正常用例 → code=0 = 成功 = 符合预期
+2. 异常用例（空参、缺参、非法、异常）→ code≠0 = 异常 = 符合预期
 """
         return self.chat(prompt)
 

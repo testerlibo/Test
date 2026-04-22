@@ -1,26 +1,7 @@
-# ===================== 你的真实测试服地址 =====================
-BASE_URL = "http://192.168.0.250:8311"
+# api地址
+BASE_URL = "http://192.168.0.250:8311/api/"
+# BASE_URL = "http://maoge-test-webserver.qikelizhi.com/api/"
 
-# ===================== 所有接口统一管理 =====================
-API = {
-    # 登录
-    "login": "/api/login/acc_login",
-    # 你后续加接口 只在这里加！
-
-    "bag": "/api/item/bag",
-    "mail": "/api/mail/list",
-    "use_item": "/api/item/use",
-}
-
-# ===================== 请求头（你抓包的真实头）=====================
-HEADERS = {
-    "User-Agent": "UnityPlayer/2021.3.10f1c2 (UnityWebRequest/1.0, libcurl/7.80.0-DEV)",
-    "Content-Type": "application/json",
-    "Accept": "*/*",
-    "Accept-Encoding": "deflate, gzip",
-    "Connection": "Keep-Alive",
-    "X-Unity-Version": "2021.3.10f1c2"
-}
 
 # AI 大模型配置 deepseek
 # AI_CONFIG = {
@@ -39,3 +20,79 @@ AI_CONFIG = {
 
 # 数据库校验（可选）
 DB_CONFIG = {}
+
+
+CLIENT_META = {
+    "clientVer": "0.8.1",
+    "resVer": "4.3.23",
+    "clientSys": 1,
+    "packageName": "com.cikgames.cat.webgl",
+    "userFromChannel": 2,
+    "adId": ""
+}
+
+# 接口信息
+API_INFO = {
+    "client_res_ver": {
+        "name": "资源版本号",
+        "method": "GET",
+        "url": "login/client_res_ver",
+        "default": {
+            "channelId": 1,
+            "clientVer": "0.8.1",
+            "clientSys": 1
+        }
+    },
+    "acc_login": {
+        "name": "账号登录",
+        "method": "POST",
+        "url": "login/acc_login",
+        "default": {
+            "channelLoginWay": 1,
+            "channelId": 1,
+            "channelAcc": "qz03311700",
+            "credential": "123456",
+            "clientMeta": CLIENT_META
+        }
+    },
+    "default_choose_server": {
+        "name": "获取默认服",
+        "method": "POST",
+        "url": "login/default_choose_server",
+        "default": {
+            "clientMeta": CLIENT_META
+        }
+    },
+    "server_zone_list": {
+        "name": "服务器大区列表",
+        "method": "POST",
+        "url": "login/server_zone_list",
+        "default": {
+            "clientMeta": CLIENT_META
+        }
+    },
+    "server_list": {
+        "name": "服务器列表",
+        "method": "POST",
+        "url": "login/server_list",
+        "default": {
+            "getListType": 1,
+            "zoneId": 1,
+            "clientMeta": CLIENT_META
+        }
+    },
+    "player_login": {
+        "name": "玩家登录",
+        "method": "POST",
+        "url": "login/player_login",
+        "default": {
+            "serverId": 1,
+            "clientMeta": CLIENT_META
+        }
+    }
+}
+
+HEADERS = {
+    "User-Agent": "UnityPlayer/2021.3.10f1c2",
+    "Content-Type": "application/json",
+}

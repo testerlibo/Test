@@ -1,52 +1,38 @@
 import requests
-from config import BASE_URL, API, HEADERS
+from config import BASE_URL, API_INFO, HEADERS
 
 class GameApiClient:
     def __init__(self):
         self.headers = HEADERS.copy()
         self.token = None
 
-    def login(self):
-        """登录：自动获取token"""
-        url = BASE_URL + API["login"]
-        data = {
-            "channelLoginWay": 1,
-            "channelId": 1,
-            "channelAcc": "qz03311700",
-            "credential": "123456",
-            "clientMeta": {
-                "clientVer": "0.8.1",
-                "resVer": "4.3.23",
-                "clientSys": 1,
-                "packageName": "com.cikgames.cat.webgl",
-                "userFromChannel": 2,
-                "adId": ""
-            }
-        }
-        resp = requests.post(url, json=data, headers=self.headers).json()
+    def set_token(self, token):
+        self.token = token
 
-        if resp.get("code") == 0:
-            self.token = resp["data"]["token"]
-            print("✅ 登录成功，token已自动设置")
-        return resp
+    def req(self, api_key, params=None):
+        if params is None:
+            params = {}
 
-    def send(self, api_name, body=None):
-        """
-        统一发送请求
-        :param api_name: API 里的key，如 login / role_list
-        :param body: 接口参数
-        """
-        if body is None:
-            body = {}
+        api = API_INFO[api_key]
+        url = BASE_URL + api["url"]
+        method = api["method"].upper()
 
-        # 自动拼接完整URL
-        url = BASE_URL + API[api_name]
-
-        # 自动带token
         if self.token:
             self.headers["Authorization"] = f"Bearer {self.token}"
 
-        return requests.post(url, json=body, headers=self.headers).json()
+        try:
+            if method == "POST":
+                r = requests.post(url, json=params, headers=self.headers)
+            elif method == "GET":
+                r = requests.get(url, params=params, headers=self.headers)
+            else:
+                return {"code": -1, "msg": "不支持的请求方式"}
 
-# 全局单例
+            if r.status_code == 401:
+                return {"code": 401, "msg": "未授权，请登录"}
+            return r.json()
+
+        except Exception as e:
+            return {"code": -99, "msg": str(e)}
+
 api = GameApiClient()
