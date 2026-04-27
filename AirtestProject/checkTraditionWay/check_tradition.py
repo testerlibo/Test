@@ -23,6 +23,9 @@ class CheckTradition:
                  det_model_dir="./checkTraditionWay/models/ch_PP-OCRv4_det_infer",
                  rec_model_dir="./checkTraditionWay/models/ch_PP-OCRv4_rec_infer",
                  cls_model_dir="./checkTraditionWay/models/ch_ppocr_mobile_v2.0_cls_infer",
+                 # cls_model_dir = None,
+                 # det_model_dir = None,
+                 # rec_model_dir = None,
                  confidence_threshold=0.6):
         self.ocr = PaddleOCR(
             use_angle_cls=True,
@@ -32,7 +35,6 @@ class CheckTradition:
             rec_model_dir=rec_model_dir,
             cls_model_dir=cls_model_dir,
             det_db_box_thresh=0.3,
-            rec_char_dict_path=None
         )
         self.s2t_converter = OpenCC('s2t')
         self.confidence_threshold = confidence_threshold
@@ -49,7 +51,7 @@ class CheckTradition:
             if not os.path.exists(temp_img):
                 return []
 
-            result = self.ocr.ocr(temp_img, cls=True)
+            result = self.ocr.ocr(temp_img)
             extracted_texts = []
             if result:
                 for line in result:

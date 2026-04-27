@@ -5,6 +5,7 @@ DEVICE_SN ="bbafe05b0604"
 
 # 模块开关配置
 ENABLE_APP_LAUNCH = True   # 是否启动APP
+ENABLE_PERF_CORE = True  # 是否打开性能监控
 
 # check_taadition.py
 PACKAGE_NAME = "com.cikgames.cat"

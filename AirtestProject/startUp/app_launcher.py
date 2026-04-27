@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 from airtest.core.api import device, sleep
 from config import PACKAGE_NAME, APP_START_TIMEOUT
