@@ -156,5 +156,288 @@
         "expected_text": "批准文號：國新出審（2025）1531號出版物號：ISBN978-7-498-15451-4"
       }
     ]
+  },
+  {
+    "time": "2026-04-27 16:44:00",
+    "screenshot": "F:/Test/AirtestProject/records\\screen_error_20260427_164400.png",
+    "error_count": 1,
+    "errors": [
+      {
+        "current_text": "背起行囊，进入猫国中",
+        "expected_text": "背起行囊，進入貓國中"
+      }
+    ]
+  },
+  {
+    "time": "2026-05-05 11:16:44",
+    "screenshot": "F:/Test/AirtestProject/records\\screen_error_20260505_111643.png",
+    "error_count": 1,
+    "errors": [
+      {
+        "current_text": "背起行囊，进入猫国中",
+        "expected_text": "背起行囊，進入貓國中"
+      }
+    ]
+  },
+  {
+    "time": "2026-05-05 11:30:58",
+    "screenshot": "F:/Test/AirtestProject/records\\screen_error_20260505_113058.png",
+    "error_count": 20,
+    "errors": [
+      {
+        "current_text": "适龄提示",
+        "expected_text": "適齡提示"
+      },
+      {
+        "current_text": "切换账号",
+        "expected_text": "切換賬號"
+      },
+      {
+        "current_text": "清除缓存",
+        "expected_text": "清除緩存"
+      },
+      {
+        "current_text": "显隐",
+        "expected_text": "顯隱"
+      },
+      {
+        "current_text": "引导",
+        "expected_text": "引導"
+      },
+      {
+        "current_text": "登录",
+        "expected_text": "登錄"
+      },
+      {
+        "current_text": "切换",
+        "expected_text": "切換"
+      },
+      {
+        "current_text": "当前：局域网",
+        "expected_text": "當前：局域網"
+      },
+      {
+        "current_text": "记录",
+        "expected_text": "記錄"
+      },
+      {
+        "current_text": "开启/关闭",
+        "expected_text": "開啓/關閉"
+      },
+      {
+        "current_text": "性能检测",
+        "expected_text": "性能檢測"
+      },
+      {
+        "current_text": "登录",
+        "expected_text": "登錄"
+      },
+      {
+        "current_text": "幺鸡服",
+        "expected_text": "幺雞服"
+      },
+      {
+        "current_text": "点击开始·",
+        "expected_text": "點擊開始·"
+      },
+      {
+        "current_text": "健康游戏忠告",
+        "expected_text": "健康遊戲忠告"
+      },
+      {
+        "current_text": "抵制不良游戏，拒绝盗版游戏。",
+        "expected_text": "抵制不良遊戲，拒絕盜版遊戲。"
+      },
+      {
+        "current_text": "注意自我保护，",
+        "expected_text": "注意自我保護，"
+      },
+      {
+        "current_text": "谨防受骗上当。",
+        "expected_text": "謹防受騙上當。"
+      },
+      {
+        "current_text": "适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。",
+        "expected_text": "適度遊戲益腦，沉迷遊戲傷身。合理安排時間，享受健康生活。"
+      },
+      {
+        "current_text": "著作权人：刺客游戏（广州）有限公司出版服务单位：天津新创元科技有限公司",
+        "expected_text": "著作權人：刺客遊戲（廣州）有限公司出版服務單位：天津新創元科技有限公司"
+      }
+    ]
+  },
+  {
+    "time": "2026-05-05 11:35:34",
+    "screenshot": "F:/Test/AirtestProject/records\\screen_error_20260505_113533.png",
+    "error_count": 20,
+    "errors": [
+      {
+        "current_text": "适龄提示",
+        "expected_text": "適齡提示"
+      },
+      {
+        "current_text": "切换账号",
+        "expected_text": "切換賬號"
+      },
+      {
+        "current_text": "清除缓存",
+        "expected_text": "清除緩存"
+      },
+      {
+        "current_text": "显隐",
+        "expected_text": "顯隱"
+      },
+      {
+        "current_text": "引导",
+        "expected_text": "引導"
+      },
+      {
+        "current_text": "登录",
+        "expected_text": "登錄"
+      },
+      {
+        "current_text": "切换",
+        "expected_text": "切換"
+      },
+      {
+        "current_text": "当前：局域网",
+        "expected_text": "當前：局域網"
+      },
+      {
+        "current_text": "记录",
+        "expected_text": "記錄"
+      },
+      {
+        "current_text": "开启/关闭",
+        "expected_text": "開啓/關閉"
+      },
+      {
+        "current_text": "性能检测",
+        "expected_text": "性能檢測"
+      },
+      {
+        "current_text": "登录",
+        "expected_text": "登錄"
+      },
+      {
+        "current_text": "幺鸡服",
+        "expected_text": "幺雞服"
+      },
+      {
+        "current_text": "点击开始",
+        "expected_text": "點擊開始"
+      },
+      {
+        "current_text": "健康游戏忠告",
+        "expected_text": "健康遊戲忠告"
+      },
+      {
+        "current_text": "抵制不良游戏，拒绝盗版游戏。",
+        "expected_text": "抵制不良遊戲，拒絕盜版遊戲。"
+      },
+      {
+        "current_text": "注意自我保护，",
+        "expected_text": "注意自我保護，"
+      },
+      {
+        "current_text": "谨防受骗上当",
+        "expected_text": "謹防受騙上當"
+      },
+      {
+        "current_text": "适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。",
+        "expected_text": "適度遊戲益腦，沉迷遊戲傷身。合理安排時間，享受健康生活。"
+      },
+      {
+        "current_text": "著作权人：刺客游戏（广州）有限公司出版服务单位：天津新创元科技有限公司",
+        "expected_text": "著作權人：刺客遊戲（廣州）有限公司出版服務單位：天津新創元科技有限公司"
+      }
+    ]
+  },
+  {
+    "time": "2026-05-05 11:59:49",
+    "screenshot": "F:/Test/AirtestProject/records\\screen_error_20260505_115948.png",
+    "error_count": 20,
+    "errors": [
+      {
+        "current_text": "适龄提示",
+        "expected_text": "適齡提示"
+      },
+      {
+        "current_text": "切换账号",
+        "expected_text": "切換賬號"
+      },
+      {
+        "current_text": "清除缓存",
+        "expected_text": "清除緩存"
+      },
+      {
+        "current_text": "显隐",
+        "expected_text": "顯隱"
+      },
+      {
+        "current_text": "引导",
+        "expected_text": "引導"
+      },
+      {
+        "current_text": "登录",
+        "expected_text": "登錄"
+      },
+      {
+        "current_text": "切换",
+        "expected_text": "切換"
+      },
+      {
+        "current_text": "当前：局域网",
+        "expected_text": "當前：局域網"
+      },
+      {
+        "current_text": "记录",
+        "expected_text": "記錄"
+      },
+      {
+        "current_text": "开启/关闭",
+        "expected_text": "開啓/關閉"
+      },
+      {
+        "current_text": "性能检测",
+        "expected_text": "性能檢測"
+      },
+      {
+        "current_text": "登录",
+        "expected_text": "登錄"
+      },
+      {
+        "current_text": "幺鸡服",
+        "expected_text": "幺雞服"
+      },
+      {
+        "current_text": "点击开始",
+        "expected_text": "點擊開始"
+      },
+      {
+        "current_text": "健康游戏忠告",
+        "expected_text": "健康遊戲忠告"
+      },
+      {
+        "current_text": "抵制不良游戏，拒绝盗版游戏。",
+        "expected_text": "抵制不良遊戲，拒絕盜版遊戲。"
+      },
+      {
+        "current_text": "注意自我保护，",
+        "expected_text": "注意自我保護，"
+      },
+      {
+        "current_text": "谨防受骗上当",
+        "expected_text": "謹防受騙上當"
+      },
+      {
+        "current_text": "适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。",
+        "expected_text": "適度遊戲益腦，沉迷遊戲傷身。合理安排時間，享受健康生活。"
+      },
+      {
+        "current_text": "著作权人：刺客游戏（广州）有限公司出版服务单位：天津新创元科技有限公司",
+        "expected_text": "著作權人：刺客遊戲（廣州）有限公司出版服務單位：天津新創元科技有限公司"
+      }
+    ]
   }
 ]

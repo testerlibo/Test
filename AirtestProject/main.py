@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 from airtest.core.api import *
-from perfTest.perf_croe import PerformanceMonitor
+from perfTest.perf_core import PerformanceMonitor
 from startUp.app_launcher import AppLauncher
 from checkTraditionWay.check_tradition import CheckTradition
 from config import ENABLE_APP_LAUNCH, DEVICE_SN, ENABLE_PERF_CORE, PACKAGE_NAME
+# from env_utils import refresh_windows_env_path
+#
+# # 全局初始化：刷新环境，ADB启动报错的时候用一下
+# refresh_windows_env_path()
 
 if __name__ == "__main__":
-    perfmon = None  # 初始化性能监控避免报错
-    # 连接设备
+    perfmon = None
     auto_setup(__file__)
     connect_device(f"Android://127.0.0.1:5037/{DEVICE_SN}")
     print("✅ 设备已连接")
