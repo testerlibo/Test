@@ -1,0 +1,39 @@
+# =============================================================================
+# AirtestProject — 运行与部署环境说明
+# =============================================================================
+#
+# 【Python】
+#   建议 3.8～3.11（与 airtest / paddle 官方支持一致；过新版本请自测）。
+#
+# 【操作系统】
+#   当前 config 中路径为 Windows 示例（如 OCR 结果目录 F:/...），
+#   换机部署时请修改 config.py 中 DEVICE_SN、OCR_ERROR_SAVE_DIR 等。
+#
+# 【Android 与设备】
+#   - 安装 Android platform-tools，将 adb 加入系统 PATH。
+#   - USB 调试设备，config.DEVICE_SN 与 adb devices 中序列号一致。
+#
+# 【游戏与自动化】
+#   - 真机安装待测包；若使用 Unity Poco，需使用已集成 Poco SDK 的打好包。
+#   - 繁体检测模块依赖本地 OCR 模型目录：checkTraditionWay/models/（勿删）。
+#
+# 【安装依赖】
+#   python -m venv .venv
+#   .venv\Scripts\activate          # Windows
+#   pip install -U pip
+#   pip install -r requirements.txt
+#
+# 【PaddlePaddle（Windows CPU 若 pip 失败）】
+#   可改用官方源安装 CPU 版后再装本文件其余包：
+#   pip install paddlepaddle -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+#
+# =============================================================================
+
+# --- 核心：Airtest 设备连接、截图、模板；Poco（含 UnityPoco 脚本侧）---
+airtest>=1.2.15
+pocoui>=1.0.94
+
+# --- 繁体检测（checkTraditionWay）：OCR + 简繁判断 ---
+paddleocr>=2.7.0
+opencc-python-reimplemented>=0.1.7
+paddlepaddle>=2.5.0
