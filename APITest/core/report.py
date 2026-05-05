@@ -2,6 +2,8 @@
 import json
 from datetime import datetime
 
+from core.result_judge import expectation_met_for_item
+
 class TestReport:
     def __init__(self):
         self.start_time = datetime.now()
@@ -19,7 +21,8 @@ class TestReport:
             api = item["api"]
             case = item["case"]
             code = item["resp"].get("code")
-            status = "✅ 通过" if code == 0 else "⚠️ 预期异常"
+            ok = expectation_met_for_item(item)
+            status = "✅ 符合预期" if ok else "❌ 不符合预期"
             print(f"【{api}】{case} | {status} code={code}")
 
         print("\n🎉 测试完成！")
@@ -51,8 +54,8 @@ class TestReport:
     def save_html(self, report_list, path="report.html"):
         """HTML 精美网页报告"""
         total = len(report_list)
-        pass_cnt = sum(1 for it in report_list if it["resp"].get("code") == 0)
-        fail_cnt = total - pass_cnt
+        met_cnt = sum(1 for it in report_list if expectation_met_for_item(it))
+        unmet_cnt = total - met_cnt
 
         html = f'''
 <!DOCTYPE html>
@@ -86,8 +89,8 @@ th {{ background: #f9f9f9; }}
 
   <div class="stats">
     <div class="stat total">总用例：{total}</div>
-    <div class="stat pass">正常：{pass_cnt}</div>
-    <div class="stat fail">预期异常：{fail_cnt}</div>
+    <div class="stat pass">符合预期：{met_cnt}</div>
+    <div class="stat fail">不符合预期：{unmet_cnt}</div>
   </div>
 
   <table>
@@ -104,10 +107,10 @@ th {{ background: #f9f9f9; }}
             req_json = json.dumps(item["req"], ensure_ascii=False, indent=2)
             resp_json = json.dumps(resp, ensure_ascii=False, indent=2)
 
-            if code == 0:
-                tag = f'<span class="pass-tag">✅ 正常</span>'
+            if expectation_met_for_item(item):
+                tag = '<span class="pass-tag">✅ 符合预期</span>'
             else:
-                tag = f'<span class="fail-tag">⚠️ 预期异常</span>'
+                tag = '<span class="fail-tag">❌ 不符合预期</span>'
 
             html += f'''
 <tr>

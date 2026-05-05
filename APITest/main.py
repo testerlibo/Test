@@ -1,69 +1,84 @@
 from core.api_client import api
 from core.ai_agent import ai
+from core.case_parser import parse_cases_from_ai
+from core.case_bundle import ensure_one_normal_four_negative
+from core.report import report
 from config import API_INFO
-import json
 
-def run_ai_dynamic_test():
-    # 登录获取Token
-    print("\n🔐 登录获取Token...")
-    login_api = API_INFO["acc_login"]
-    login_resp = api.req("acc_login", login_api["default"])
+def run_test():
+    print("=" * 70)
+    print("🤖 AI 动态用例自动化测试")
+    print("=" * 70)
+
+    # 登录
+    print("\n🔐 登录中...")
+    login_resp = api.req("acc_login", API_INFO["acc_login"]["default"])
     print("登录结果:", login_resp)
+
     if login_resp.get("code") != 0:
         print("❌ 登录失败")
         return
+
     token = login_resp["data"]["token"]
     api.set_token(token)
-    print("✅ Token 已生效： ", token)
+    print("✅ Token 已设置")
 
-    report = [] #保存结果
+    report_list = []
+
     # 遍历接口
     for api_key, info in API_INFO.items():
+        if api_key == "acc_login":
+            continue
+
         api_name = info["name"]
         default_params = info["default"]
-        print(f"🎯 接口：{api_name}")
-        #生成用例
-        case_text = ai.gen_test_cases_with_params(api_name, default_params)
-        print(f"\n📋 AI 生成用例：\n{case_text}")
 
-        lines = []
-        for line in case_text.splitlines():
-            line = line.strip()
-            if line and "|" in line:
-                lines.append(line)
-        for line in lines:
-            try:
-                case_name, param_str = line.split("|", 1)
-                param = json.loads(param_str)
-            except:
-                print(f"⚠️ 跳过：{line}")
-                continue
-            # 执行用例
+        print("\n" + "="*60)
+        print(f"🎯 接口：{api_name}")
+        print("="*60)
+
+        # AI 生成用例
+        case_text = ai.gen_test_cases_with_params(api_name, default_params)
+        print(f"\n📋 AI 用例：\n{case_text}")
+
+        cases, parse_warnings = parse_cases_from_ai(case_text)
+        cases, bundle_warnings = ensure_one_normal_four_negative(cases, default_params)
+        for w in parse_warnings + bundle_warnings:
+            print(f"⚠️ 解析/归一化：{w}")
+        print(f"📌 本接口执行用例数：{len(cases)}（1 条 normal + 4 条 negative）")
+
+        # 执行
+        for row in cases:
+            case_name = row["case"]
+            kind = row["kind"]
+            param = row["params"]
+
             api.set_token(token)
-            print(f"\n▶ 执行：{case_name}")
+            print(f"\n▶ 执行：{case_name}（kind={kind}）")
             print(f"🔎 请求：{param}")
+
             resp = api.req(api_key, param)
             print(f"📦 返回：{resp}")
-            # 执行结果
-            ai_result = ai.analyze(resp, case_name)
-            print(f"✅ AI分析：{ai_result}")
-            report.append({
+
+            ai_result = ai.analyze(resp, kind)
+            print(f'📊结论是:\n{ai_result}')
+
+            report_list.append({
                 "api": api_name,
                 "case": case_name,
+                "kind": kind,
                 "req": param,
                 "resp": resp,
                 "ai": ai_result
             })
-    print("📊 AI 动态执行报告")
-    for item in report:
-        code = item["resp"].get("code")
-        status = "✅ 正常" if code == 0 else "⚠️ 预期异常"
-        print(f"[{item['api']}] {item['case']} | {status}")
-        print(f"   请求：{item['req']}")
-        print(f"   AI：{item['ai']}")
-        print("-"*60)
 
-    print("\n🎉 AI 全动态自动化测试完成！")
+    # ======================
+    # 统一输出报告
+    # ======================
+    report.generate(report_list)   # 控制台
+    report.save_txt(report_list)    # txt报告
+    report.save_json(report_list)   # json报告
+    report.save_html(report_list)
 
 if __name__ == "__main__":
-    run_ai_dynamic_test()
+    run_test()
